@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/styles.css">
+    <title>TechConnect - Inscrição</title>
+</head>
+<body>
+
+<body>
+    <header class="cabecalho">
+        <nav>
+            <a href="index.html" class="linkgrupo">
+                <div class="logo-icon">TC</div>
+                <div class="logo-text">
+                    <span class="titulo">TechConnect <br></span>
+                    <span class="subtitulo-logo">Evento de TI 2026</span>
+                </div>
+            </a>
+            <div class="linksMeio">
+                <a href="index.html">Início</a>
+                <a href="programacao.html">Programação</a>
+                <a href="formulario.html">Inscrição</a>
+            </div>
+        </nav>
+        <div class="botoesCabecalho">
+            <button class="botaoEntrar">Entrar</button>
+            <button class="botaoInscricao">Inscreva-se</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="secaoFormulario">
+            <div class="container">
+                <div class="abaInscricao">
+                    <h1 id="tituloAbaFormulario">Inscrição no Evento</h1>
+                    <h3 id="subtituloAbaFormulario">Preencha o formulário abaixo para garantir sua vaga</h3>
+                </div>
+                <form class="formulario">
+                    <div class="informText">
+                        <h5>Dados para Inscrição</h5>
+                        <h6 id="subtituloInformText">Preencha seus dados para completar a inscrição no TechConnect 2026</h6>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="name">Nome Completo <span class="obrigatorio">*</span></label>
+                        <input type="name" class="campo-Input" placeholder=" Seu nome completo" require>
+                        <span class="spanInput">Digite seu nome completo como está no documento</span>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="email">E-mail Profissional <span class="obrigatorio">*</span></label>
+                        <input type="email" class="campo-Input" placeholder=" Email" require>
+                        <span class="spanInput">Usaremos este e-mail para enviar confirmação e certificado</span>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="cpf">CPF <span class="obrigatorio">*</span></label>
+                        <input type="cpf" class="campo-Input" placeholder=" 000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+                        title="Digite o CPF no formato 000.000.000-00"require>
+                        <span class="spanInput">Necessário para emissão do certificado</span>
+                    </div>
+                    <div class="botaoConfirmar">
+                        <button id="botaoConfirmarInscricao">Confirmar Inscrição</button>
+                    </div>
+                    <div class="informTextFinal">
+                        <span id="spanTextFinal">Ao se inscrever, você concorda com nossos termos de uso e política de privacidade</span>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="text">
+            <p id="p1">© 2026 TechConnect. Evento Tecnológico - Demonstração de acessibilidade em TI</p>
+            <p>Este site foi desenvolvido com foco em acessibilidade e inclusão</p>
+        </div>
+    </footer>
+</body>
+</html>
