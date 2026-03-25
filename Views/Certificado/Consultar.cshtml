@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Consultar Certificado";
+}
+
+<h1>Consultar Certificado</h1>
+
+<form asp-action="Consultar" method="get">
+    <div class="form-group">
+        <label for="codigo">Código de Verificação</label>
+        <input type="text" id="codigo" name="codigo" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Consultar</button>
+</form>
