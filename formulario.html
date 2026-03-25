@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>TechConnect - Inscrição</title>
 </head>
 <body>
@@ -25,8 +25,8 @@
             </div>
         </nav>
         <div class="botoesCabecalho">
-            <button class="botaoEntrar">Entrar</button>
-            <button class="botaoInscricao">Inscreva-se</button>
+            <a href="http://localhost:9999/Auth/Login" class="botaoEntrar">Entrar</a>
+            <a href="formulario.html" class="botaoInscricao">Inscreva-se</a>
         </div>
     </header>
 
@@ -44,24 +44,24 @@
                     </div>
                     <div class="grupo-campo">
                         <label for="name">Nome Completo <span class="obrigatorio">*</span></label>
-                        <input type="name" class="campo-Input" placeholder=" Seu nome completo" require>
+                        <input type="text" name="name" class="campo-Input" placeholder=" Seu nome completo" required>
                         <span class="spanInput">Digite seu nome completo como está no documento</span>
                     </div>
 
                     <div class="grupo-campo">
                         <label for="email">E-mail Profissional <span class="obrigatorio">*</span></label>
-                        <input type="email" class="campo-Input" placeholder=" Email" require>
+                        <input type="email" name="email" class="campo-Input" placeholder=" Email" required>
                         <span class="spanInput">Usaremos este e-mail para enviar confirmação e certificado</span>
                     </div>
 
                     <div class="grupo-campo">
                         <label for="cpf">CPF <span class="obrigatorio">*</span></label>
-                        <input type="cpf" class="campo-Input" placeholder=" 000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
-                        title="Digite o CPF no formato 000.000.000-00"require>
+                        <input type="text" name="cpf" class="campo-Input" placeholder=" 000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+                        title="Digite o CPF no formato 000.000.000-00" required>
                         <span class="spanInput">Necessário para emissão do certificado</span>
                     </div>
                     <div class="botaoConfirmar">
-                        <button id="botaoConfirmarInscricao">Confirmar Inscrição</button>
+                        <button type="submit" id="botaoConfirmarInscricao">Confirmar Inscrição</button>
                     </div>
                     <div class="informTextFinal">
                         <span id="spanTextFinal">Ao se inscrever, você concorda com nossos termos de uso e política de privacidade</span>
@@ -79,5 +79,107 @@
             <p>Este site foi desenvolvido com foco em acessibilidade e inclusão</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.formulario');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(form);
+                    const params = new URLSearchParams(formData);
+                    
+                    try {
+                        // Limpar mensagens anteriores
+                        const existingMessage = document.querySelector('.inscricao-message');
+                        if (existingMessage) existingMessage.remove();
+                        
+                        const response = await fetch('http://localhost:9999/Inscricao/CreateFromForm?' + params, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            redirect: 'follow'
+                        });
+                        
+                        if (response.ok) {
+                            // Criar mensagem de sucesso
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = 'inscricao-message';
+                            messageDiv.style.cssText = `
+                                background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+                                color: white;
+                                padding: 20px;
+                                border-radius: 8px;
+                                margin-bottom: 20px;
+                                text-align: center;
+                                font-weight: 600;
+                                font-size: 1.1rem;
+                                animation: slideDown 0.5s ease;
+                            `;
+                            messageDiv.innerHTML = `
+                                ✅ Inscrição realizada com sucesso!<br>
+                                <span style="font-size: 0.9rem; margin-top: 10px; display: block;">
+                                    Redirecionando em 3 segundos...
+                                </span>
+                            `;
+                            form.parentElement.insertBefore(messageDiv, form);
+                            
+                            // Redirecionar após 3 segundos
+                            setTimeout(() => {
+                                window.location.href = 'http://localhost:9999/Auth/Login';
+                            }, 3000);
+                        } else {
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = 'inscricao-message';
+                            messageDiv.style.cssText = `
+                                background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+                                color: white;
+                                padding: 15px;
+                                border-radius: 8px;
+                                margin-bottom: 20px;
+                                text-align: center;
+                                font-weight: 600;
+                            `;
+                            messageDiv.innerHTML = '❌ Erro ao processar inscrição. Tente novamente.';
+                            form.parentElement.insertBefore(messageDiv, form);
+                        }
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'inscricao-message';
+                        messageDiv.style.cssText = `
+                            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+                            color: white;
+                            padding: 15px;
+                            border-radius: 8px;
+                            margin-bottom: 20px;
+                            text-align: center;
+                            font-weight: 600;
+                        `;
+                        messageDiv.innerHTML = '❌ Erro ao conectar com o servidor. Verifique se o backend está rodando em http://localhost:9999';
+                        form.parentElement.insertBefore(messageDiv, form);
+                    }
+                });
+            }
+        });
+        
+        // Adicionar animação
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
