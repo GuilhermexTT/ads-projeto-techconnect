@@ -1,0 +1,210 @@
+@using TechConnectBackend.Models;
+@model Certificado
+
+@{
+    ViewData["Title"] = "Emitir Certificado";
+    var inscricao = ViewBag.Inscricao as Inscricao;
+}
+
+<style>
+    .emitir-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .certificate-preview {
+        width: 100%;
+        max-width: 700px;
+        height: 450px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        margin: 30px auto;
+        font-family: 'Georgia', serif;
+    }
+
+    .cert-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .cert-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .cert-name {
+        font-size: 2rem;
+        font-weight: bold;
+        border-bottom: 3px solid white;
+        padding-bottom: 10px;
+        margin: 30px 0;
+        min-width: 400px;
+    }
+
+    .cert-info {
+        font-size: 0.95rem;
+        margin-top: 20px;
+        opacity: 0.85;
+    }
+
+    .cert-date {
+        margin-top: 30px;
+        font-size: 0.9rem;
+    }
+
+    .form-section {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        flex: 1;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+        background: #e2e8f0;
+        color: #2d3748;
+        flex: 1;
+    }
+
+    .btn-secondary:hover {
+        background: #cbd5e0;
+    }
+
+    .info-box {
+        background: #f0f4ff;
+        border-left: 4px solid #667eea;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .info-box strong {
+        color: #667eea;
+    }
+</style>
+
+<div class="emitir-container">
+    <h1>🎓 Emitir Certificado</h1>
+
+    <div class="info-box">
+        <strong>Evento:</strong> @inscricao?.Evento<br>
+        <strong>Participante:</strong> @inscricao?.Participante.Nome
+    </div>
+
+    <h3 style="text-align: center; margin-top: 30px;">Preview do Certificado</h3>
+    
+    <div class="certificate-preview">
+        <div class="cert-title">Certificado de Conclusão</div>
+        <div class="cert-subtitle">TechConnect Academy</div>
+        <div style="text-align: center; font-size: 1rem;">Certificamos que</div>
+        <div class="cert-name">@inscricao?.Participante.Nome</div>
+        <div style="text-align: center;">
+            <div>participou e concluiu com êxito o evento</div>
+            <div style="font-weight: bold; margin-top: 10px;">@inscricao?.Evento</div>
+        </div>
+        <div class="cert-date">
+            Emitido em: @DateTime.Now.ToLongDateString()
+        </div>
+    </div>
+
+    <div class="form-section">
+        <form method="post" action="@Url.Action("GerarCertificado", "Certificado")">
+            <input type="hidden" name="inscricaoId" value="@inscricao?.Id" />
+            
+            <div class="form-group">
+                <label for="Tipo">Tipo de Certificado *</label>
+                <select id="Tipo" name="Tipo" required>
+                    <option value="">Selecione o tipo...</option>
+                    <option value="Semanas Acadêmicas">Semanas Acadêmicas</option>
+                    <option value="Jornadas">Jornadas</option>
+                    <option value="Hackathons">Hackathons</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Palestra">Palestra</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="HorasAcademicas">Horas Acadêmicas *</label>
+                <input type="number" id="HorasAcademicas" name="HorasAcademicas" min="1" max="999" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Descricao">Descrição (opcional)</label>
+                <textarea id="Descricao" name="Descricao" rows="3" placeholder="Adicione uma descrição especial ao certificado..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">📥 Gerar e Baixar Certificado</button>
+                <a href="@Url.Action("Area", "Participante")" class="btn btn-secondary" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">← Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
