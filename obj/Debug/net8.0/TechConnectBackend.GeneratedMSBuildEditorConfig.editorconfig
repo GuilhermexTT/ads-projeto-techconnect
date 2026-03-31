@@ -1,0 +1,67 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TechConnectBackend
+build_property.RootNamespace = TechConnectBackend
+build_property.ProjectDir = C:\Users\Guilherme Gutilão\Desktop\Unip\PIM's\PIM5\Projeto PIM5\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Guilherme Gutilão\Desktop\Unip\PIM's\PIM5\Projeto PIM5
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Consultar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29uc3VsdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Detalhes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = RGV0YWxoZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Emitir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = RW1pdGlyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/NaoEncontrado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TmFvRW5jb250cmFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Views/Certificado/Consultar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VydGlmaWNhZG9cQ29uc3VsdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Views/Certificado/Detalhes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VydGlmaWNhZG9cRGV0YWxoZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Views/Certificado/NaoEncontrado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VydGlmaWNhZG9cTmFvRW5jb250cmFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Views/Participante/Area.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRlXEFyZWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Guilherme Gutilão/Desktop/Unip/PIM's/PIM5/Projeto PIM5/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

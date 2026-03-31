@@ -46,6 +46,13 @@ public class ParticipanteController : Controller
             return NotFound();
         }
 
+        // Simula que todas as inscrições foram concluídas (100%)
+        // Para fins de demonstração, marca como participado
+        foreach (var inscricao in participante.Inscricoes)
+        {
+            inscricao.Participou = true;
+        }
+
         var mensagens = new[]
         {
             "Não se trata do que você tem ou não tem. Trata-se do que você faz com o que tem. - Stephen Curry",

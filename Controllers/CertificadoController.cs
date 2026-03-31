@@ -34,12 +34,32 @@ public class CertificadoController : Controller
     {
         if (ModelState.IsValid)
         {
+            // Busca a inscrição para garantir que existe
+            var inscricao = await _context.Inscricoes
+                .Include(i => i.Participante)
+                .FirstOrDefaultAsync(i => i.Id == certificado.InscricaoId);
+            
+            if (inscricao == null)
+            {
+                ModelState.AddModelError("", "Inscrição não encontrada.");
+                return View(certificado);
+            }
+
+            // Gera um novo código de verificação único
+            certificado.CodigoVerificacao = Guid.NewGuid().ToString();
+            certificado.DataEmissao = DateTime.Now;
+            certificado.Inscricao = inscricao;
+
             _context.Add(certificado);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Area", "Participante", new { id = certificado.Inscricao.ParticipanteId });
+            
+            return RedirectToAction("Area", "Participante", new { id = inscricao.ParticipanteId });
         }
-        var inscricao = _context.Inscricoes.Include(i => i.Participante).FirstOrDefault(i => i.Id == certificado.InscricaoId);
-        ViewBag.Inscricao = inscricao;
+        
+        var inscricaoData = await _context.Inscricoes
+            .Include(i => i.Participante)
+            .FirstOrDefaultAsync(i => i.Id == certificado.InscricaoId);
+        ViewBag.Inscricao = inscricaoData;
         return View(certificado);
     }
 
