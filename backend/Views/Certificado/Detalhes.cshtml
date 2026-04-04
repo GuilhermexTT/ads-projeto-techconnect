@@ -1,0 +1,14 @@
+@model TechConnectBackend.Models.Certificado
+
+@{
+    ViewData["Title"] = "Certificado";
+}
+
+<h1>Certificado de Participação</h1>
+
+<p><strong>Participante:</strong> @Model.Inscricao.Participante.Nome</p>
+<p><strong>Evento:</strong> @Model.Inscricao.Evento</p>
+<p><strong>Tipo:</strong> @Model.Tipo</p>
+<p><strong>Horas Acadêmicas:</strong> @Model.HorasAcademicas</p>
+<p><strong>Data Emissão:</strong> @Model.DataEmissao.ToShortDateString()</p>
+<p><strong>Código de Verificação:</strong> @Model.CodigoVerificacao</p>
