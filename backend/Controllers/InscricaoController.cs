@@ -27,15 +27,28 @@ public class InscricaoController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateFromForm(string name, string email, string cpf, string evento = "TechConnect 2026")
     {
-        var participante = new Participante { Nome = name, Email = email, Cpf = cpf };
-        _context.Add(participante);
-        await _context.SaveChangesAsync();
+        try
+        {
+            var participante = new Participante { Nome = name, Email = email, Cpf = cpf };
+            _context.Add(participante);
+            await _context.SaveChangesAsync();
 
-        var inscricao = new Inscricao { ParticipanteId = participante.Id, Evento = evento };
-        _context.Add(inscricao);
-        await _context.SaveChangesAsync();
+            var inscricao = new Inscricao { ParticipanteId = participante.Id, Evento = evento };
+            _context.Add(inscricao);
+            await _context.SaveChangesAsync();
 
-        return RedirectToAction("Area", "Participante", new { id = participante.Id });
+            return RedirectToAction("Area", "Participante", new { id = participante.Id });
+        }
+        catch (Exception ex)
+        {
+            // Registrar log de erro
+            Console.Error.WriteLine($"Erro ao salvar inscrição: {ex.Message}");
+
+            // Retornar mensagem amigável para a View
+            ViewBag.ErrorMessage = "Ocorreu um erro ao processar sua inscrição. Por favor, tente novamente.";
+            ViewBag.Participantes = _context.Participantes.ToList();
+            return View("Create");
+        }
     }
 
     [HttpPost]

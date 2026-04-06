@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TechConnectBackend.Models;
+using TechConnectBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
+
+builder.Services.AddSingleton<DataService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("TechConnectDb"));
 
